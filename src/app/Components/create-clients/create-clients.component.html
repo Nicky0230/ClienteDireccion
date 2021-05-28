@@ -1,0 +1,85 @@
+<div class="container pt-4">
+  <div class="row">
+    <div class="col lg-6 ">
+      <div class="card text-center">
+        <div class="card-body">
+          <h3 *ngIf="id === null">Agregar Cliente</h3>
+          <h3 *ngIf="id !== null">Editar Cliente</h3>
+          <span *ngIf="submited && createClient.invalid">Todos los campos son requeridos</span>
+          <form [formGroup]="createClient" class="mt-4">
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Nombre del Cliente" formControlName="Cliente_nombre">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Nombre de la Empresa" formControlName="Empresa_nombre">
+              </div>
+            </div>
+
+              <div class="doble-line" style="margin-top: 10px;"></div>
+
+              <fieldset class="add-fields">
+                <legend>
+                    Direcciones
+                    <button type="button" class="btn btn-primary" data-toggle="modal" style="float:right" data-target="#exampleModal"  (click)="cargarDireccion(null)">Agregar</button>
+                </legend>
+                <h5 *ngIf="direcciones.length === 0">Este cliente no tiene direcciones agregada</h5>
+                <table  class="table bgheader striped" *ngIf="direcciones.length > 0">
+                    <thead  class="nocenter">
+                        <tr>
+                          <!-- <th scope="col">#</th> -->
+                            <th>Nombre</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let dir of direcciones; index as i">
+                            <td>{{dir.direccion_Cliente}}</td>
+                            <td>
+                              <i class="fas fa-edit fa-lg text-info" data-toggle="modal" data-target="#exampleModal" style="margin-right: 20px;"  (click)="cargarDireccion(i)"></i>
+                              <i class="far fa-trash-alt fa-lg text-danger" (click)="eliminarDireccion(i)"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+            <div class="mt-3">
+              <button type="text" class="btn btn-secondary btn-lg" style="margin-right: 20px;" routerLink="/list-client">Volver</button>
+              <button type="submit" class="btn btn-success btn-lg" (click)="agregarEditarCliente()">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Direcciones</h5>
+
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="createDireccion" class="mt-4">
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Dirección:</label>
+            <textarea type="text" class="form-control" placeholder="Direccion" formControlName="direccion_Cliente"> </textarea>
+          </div>
+
+        <span *ngIf="submited && createDireccion.invalid">Todos los campos son requeridos</span>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary" [attr.data-dismiss]="submitDir" (click)="addDireccion()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

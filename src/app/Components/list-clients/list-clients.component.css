@@ -1,0 +1,9 @@
+i {
+  cursor: pointer;
+}
+.message-no-register { background: #ededed; border-radius: 3px; overflow: hidden; padding: 8px 10px; margin-top: 20px; }
+.message-no-register .icon { background-color: #cfd1d4; border-radius: 50%; float: left; height: 60px; margin: 0 auto; padding: 10px; text-align: center; position: relative; width: 60px; }
+.message-no-register .icon i { color: #9da2ab; }
+.message-no-register .icon i:first-child { font-size: 42px; line-height: 0px; }
+.message-no-register .icon i:last-child { font-size: 14px; position: absolute; right: 24px; top: 22px; }
+.message-no-register .text { float: left; font-size: 18px; padding: 20px 0 0 16px; }

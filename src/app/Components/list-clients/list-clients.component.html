@@ -1,0 +1,72 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Administrador de Clientes</span>
+  </div>
+</nav>
+
+
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-body">
+      <span class="h3">Listado de Clientes</span>
+      <button type="button" class="btn btn-primary" style="float:right" routerLink="/create-client">Agregar</button>
+      <div class="message-no-register"  *ngIf="cliente?.length === 0">
+        <div class="text">No hay informacion para mostrar</div>
+      </div>
+      <table *ngIf="cliente.length > 0" class="table  table-hover mt-5">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Empresa</th>
+            <!-- <th>Dirección</th> -->
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of cliente">
+            <td>{{c.Cliente_nombre}}</td>
+            <td>{{c.Empresa_nombre}}</td>
+            <!-- <td><button type="button" class="btn btn-success">Ver direcciones</button></td> -->
+            <td>
+              <i class="fas fa-edit fa-lg text-info" style="margin-right: 20px;" [routerLink]="['/edit-client/', c.id]"></i>
+              <i (click)="eliminarCliente(c.id)" class="far fa-trash-alt fa-lg text-danger"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Detalle del cliente (Nombre Cliente)</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+          </div>
+          <div class="modal-body">
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th scope="col">Nombre</th>
+                          <th scope="col">Direccion</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>Pablo</td>
+                          <td>Piantini #54</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+          </div>
+      </div>
+  </div>
+</div>

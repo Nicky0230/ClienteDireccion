@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "control-cliente-90653": {
+      "hosting": {
+        "adminCliente": [
+          "control-cliente-90653"
+        ]
+      }
+    }
+  }
+}
